@@ -21,6 +21,9 @@ import { useNavigate } from "react-router-dom";
 import { SelectChangeEvent } from "@mui/material/Select";
 import "./Form.css";
 
+/**
+ * Interface que representa os dados do formulário de cadastro.
+ */
 interface FormData {
   fullName: string;
   cpf: string;
@@ -38,6 +41,15 @@ interface FormData {
   interests: string[];
 }
 
+/**
+ * Componente de formulário de cadastro.
+ *
+ * Permite ao usuário preencher dados pessoais, de contato e preferências,
+ * realizando validação dos campos obrigatórios e redirecionando para a página de relatório ao submeter.
+ *
+ * @component
+ * @returns {JSX.Element} O formulário de cadastro.
+ */
 const Form: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
@@ -107,14 +119,34 @@ const Form: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="md">
-      <Box component="form" onSubmit={handleSubmit} noValidate>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Formulário de Cadastro
+    <Container
+      maxWidth="md"
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        className="form-container"
+        aria-labelledby="form-title"
+      >
+        <Typography
+          variant="h4"
+          component="h1"
+          className="form-title"
+          id="form-title"
+          gutterBottom
+        >
+          📝 Formulário de Cadastro
         </Typography>
         <FormGroup>
           <fieldset>
-            <legend>Dados Pessoais</legend>
+            <legend>👤 Dados Pessoais</legend>
             <FormControl margin="normal" error={errors.fullName} fullWidth>
               <TextField
                 label="Nome Completo"
@@ -123,9 +155,19 @@ const Form: React.FC = () => {
                 value={formData.fullName}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={
+                  errors.fullName ? "fullName-error" : undefined
+                }
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu nome completo",
+                  },
+                }}
               />
               {errors.fullName && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="fullName-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" error={errors.cpf} fullWidth>
@@ -136,8 +178,19 @@ const Form: React.FC = () => {
                 value={formData.cpf}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={errors.cpf ? "cpf-error" : undefined}
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu CPF",
+                    placeholder: "000.000.000-00",
+                  },
+                }}
               />
-              {errors.cpf && <FormHelperText>Campo obrigatório</FormHelperText>}
+              {errors.cpf && (
+                <FormHelperText id="cpf-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl margin="normal" error={errors.birthDate} fullWidth>
               <TextField
@@ -149,25 +202,46 @@ const Form: React.FC = () => {
                 onChange={handleInputChange}
                 InputLabelProps={{ shrink: true }}
                 fullWidth
+                aria-describedby={
+                  errors.birthDate ? "birthDate-error" : undefined
+                }
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Selecione sua data de nascimento",
+                  },
+                }}
               />
               {errors.birthDate && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="birthDate-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl component="fieldset" margin="normal" fullWidth>
-              <FormLabel component="legend">Sexo</FormLabel>
+              <FormLabel component="legend">👫 Sexo</FormLabel>
               <RadioGroup
                 row
                 name="gender"
                 value={formData.gender}
                 onChange={handleInputChange}
+                aria-label="Selecione seu sexo"
               >
-                <FormControlLabel value="M" control={<Radio />} label="M" />
-                <FormControlLabel value="F" control={<Radio />} label="F" />
+                <FormControlLabel
+                  value="M"
+                  control={<Radio />}
+                  label="Masculino"
+                  aria-label="Masculino"
+                />
+                <FormControlLabel
+                  value="F"
+                  control={<Radio />}
+                  label="Feminino"
+                  aria-label="Feminino"
+                />
               </RadioGroup>
             </FormControl>
             <FormControl margin="normal" error={errors.maritalStatus} fullWidth>
-              <InputLabel id="marital-status-label">Estado Civil</InputLabel>
+              <InputLabel id="marital-status-label">💍 Estado Civil</InputLabel>
               <Select
                 labelId="marital-status-label"
                 name="maritalStatus"
@@ -175,33 +249,49 @@ const Form: React.FC = () => {
                 value={formData.maritalStatus}
                 onChange={handleSelectChange}
                 fullWidth
+                aria-describedby={
+                  errors.maritalStatus ? "maritalStatus-error" : undefined
+                }
               >
-                <MenuItem value="">
-                  <em>Selecione</em>
+                <MenuItem value="" disabled>
+                  <em>Selecione seu estado civil</em>
                 </MenuItem>
-                <MenuItem value="Solteiro">Solteiro</MenuItem>
-                <MenuItem value="Casado">Casado</MenuItem>
-                <MenuItem value="Viúvo">Viúvo</MenuItem>
-                <MenuItem value="Divorciado">Divorciado</MenuItem>
+                <MenuItem value="Solteiro">Solteiro(a)</MenuItem>
+                <MenuItem value="Casado">Casado(a)</MenuItem>
+                <MenuItem value="Viúvo">Viúvo(a)</MenuItem>
+                <MenuItem value="Divorciado">Divorciado(a)</MenuItem>
               </Select>
               {errors.maritalStatus && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText
+                  id="maritalStatus-error"
+                  className="error-message"
+                >
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
           </fieldset>
           <fieldset>
-            <legend>Dados de Contato</legend>
+            <legend>📍 Dados de Contato</legend>
             <FormControl margin="normal" error={errors.address} fullWidth>
               <TextField
-                label="Endereço"
+                label="Endereço Completo"
                 name="address"
                 required
                 value={formData.address}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={errors.address ? "address-error" : undefined}
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu endereço completo",
+                  },
+                }}
               />
               {errors.address && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="address-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" error={errors.neighborhood} fullWidth>
@@ -212,9 +302,22 @@ const Form: React.FC = () => {
                 value={formData.neighborhood}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={
+                  errors.neighborhood ? "neighborhood-error" : undefined
+                }
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu bairro",
+                  },
+                }}
               />
               {errors.neighborhood && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText
+                  id="neighborhood-error"
+                  className="error-message"
+                >
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" error={errors.city} fullWidth>
@@ -225,13 +328,21 @@ const Form: React.FC = () => {
                 value={formData.city}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={errors.city ? "city-error" : undefined}
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite sua cidade",
+                  },
+                }}
               />
               {errors.city && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="city-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" error={errors.state} fullWidth>
-              <InputLabel id="state-label">UF</InputLabel>
+              <InputLabel id="state-label">🌎 UF (Estado)</InputLabel>
               <Select
                 labelId="state-label"
                 name="state"
@@ -239,9 +350,10 @@ const Form: React.FC = () => {
                 value={formData.state}
                 onChange={handleSelectChange}
                 fullWidth
+                aria-describedby={errors.state ? "state-error" : undefined}
               >
-                <MenuItem value="">
-                  <em>Selecione</em>
+                <MenuItem value="" disabled>
+                  <em>Selecione seu estado</em>
                 </MenuItem>
                 {[
                   "AC",
@@ -278,7 +390,9 @@ const Form: React.FC = () => {
                 ))}
               </Select>
               {errors.state && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="state-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" error={errors.zipCode} fullWidth>
@@ -289,98 +403,164 @@ const Form: React.FC = () => {
                 value={formData.zipCode}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={errors.zipCode ? "zipCode-error" : undefined}
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu CEP",
+                    placeholder: "00000-000",
+                  },
+                }}
               />
               {errors.zipCode && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="zipCode-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" error={errors.phone} fullWidth>
               <TextField
-                label="Celular"
+                label="📱 Celular"
                 name="phone"
                 required
                 value={formData.phone}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={errors.phone ? "phone-error" : undefined}
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu número de celular",
+                    placeholder: "(00) 00000-0000",
+                  },
+                }}
               />
               {errors.phone && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="phone-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" fullWidth>
               <TextField
-                label="Telefone"
-                name="phone"
-                value={formData.phone}
+                label="☎️ Telefone Fixo (Opcional)"
+                name="landlinePhone"
+                value=""
                 onChange={handleInputChange}
                 fullWidth
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu telefone fixo (opcional)",
+                    placeholder: "(00) 0000-0000",
+                  },
+                }}
               />
             </FormControl>
           </fieldset>
           <fieldset>
-            <legend>Dados de Cadastro</legend>
+            <legend>📧 Dados de Cadastro</legend>
             <FormControl margin="normal" error={errors.email} fullWidth>
               <TextField
                 label="E-mail"
                 name="email"
+                type="email"
                 required
                 value={formData.email}
                 onChange={handleInputChange}
                 fullWidth
+                aria-describedby={errors.email ? "email-error" : undefined}
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite seu endereço de e-mail",
+                    placeholder: "exemplo@email.com",
+                  },
+                }}
               />
               {errors.email && (
-                <FormHelperText>Campo obrigatório</FormHelperText>
+                <FormHelperText id="email-error" className="error-message">
+                  ⚠️ Campo obrigatório
+                </FormHelperText>
               )}
             </FormControl>
             <FormControl margin="normal" fullWidth>
               <TextField
-                label="Website"
+                label="🌐 Website (Opcional)"
                 name="website"
+                type="url"
                 value={formData.website}
                 onChange={handleInputChange}
                 fullWidth
+                slotProps={{
+                  htmlInput: {
+                    "aria-label": "Digite o endereço do seu website (opcional)",
+                    placeholder: "https://seusite.com",
+                  },
+                }}
               />
             </FormControl>
             <FormControl component="fieldset" margin="normal" fullWidth>
-              <FormLabel component="legend">
-                Deseja receber informações sobre os seguintes assuntos:
+              <FormLabel
+                component="legend"
+                sx={{
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  color: "#1976d2",
+                  mb: 2,
+                }}
+              >
+                🎯 Deseja receber informações sobre os seguintes assuntos:
               </FormLabel>
-              <FormGroup row>
+              <FormGroup row sx={{ gap: 1 }}>
                 {[
-                  "Tecnologia",
-                  "Esportes",
-                  "Automóveis",
-                  "Culinária",
-                  "Política",
-                  "Policial",
-                  "Tempo",
-                  "Cultura",
-                  "Economia",
-                  "Jogos",
-                  "Educação",
-                  "Viagem",
-                  "Empregos",
-                  "Moda e Estilo",
-                ].map((interest) => (
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={formData.interests.includes(interest)}
-                        onChange={handleCheckboxChange}
-                        name="interests"
-                        value={interest}
-                      />
-                    }
-                    label={interest}
-                    key={interest}
-                  />
-                ))}
+                  "💻 Tecnologia",
+                  "⚽ Esportes",
+                  "🚗 Automóveis",
+                  "🍳 Culinária",
+                  "🏛️ Política",
+                  "🚨 Policial",
+                  "🌤️ Tempo",
+                  "🎨 Cultura",
+                  "💰 Economia",
+                  "🎮 Jogos",
+                  "📚 Educação",
+                  "✈️ Viagem",
+                  "💼 Empregos",
+                  "👗 Moda e Estilo",
+                ].map((interest) => {
+                  const cleanInterest = interest.replace(/^[^\s]+ /, ""); // Remove emoji for value
+                  return (
+                    <FormControlLabel
+                      key={cleanInterest}
+                      control={
+                        <Checkbox
+                          checked={formData.interests.includes(cleanInterest)}
+                          onChange={handleCheckboxChange}
+                          name="interests"
+                          value={cleanInterest}
+                          aria-label={`Receber informações sobre ${cleanInterest}`}
+                        />
+                      }
+                      label={interest}
+                      sx={{
+                        minWidth: { xs: "100%", sm: "45%", md: "30%" },
+                        margin: 0.5,
+                      }}
+                    />
+                  );
+                })}
               </FormGroup>
             </FormControl>
           </fieldset>
-          <Button type="submit" variant="contained" color="primary">
-            Enviar
-          </Button>
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              className="submit-button"
+              aria-label="Enviar formulário de cadastro"
+              startIcon={<span>✅</span>}
+            >
+              Enviar Cadastro
+            </Button>
+          </Box>
         </FormGroup>
       </Box>
     </Container>
