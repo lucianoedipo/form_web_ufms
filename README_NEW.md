@@ -15,24 +15,28 @@ Este projeto é um exemplo prático e educativo de um formulário de cadastro de
 Este projeto foi desenvolvido para ensinar os seguintes conceitos fundamentais:
 
 ### 📚 **Conceitos de React**
+
 - ⚛️ **Componentes Funcionais** - Como criar e estruturar componentes
 - 🎣 **Hooks** - `useState`, `useNavigate` para gerenciamento de estado
 - 🔄 **Manipulação de Eventos** - `onChange`, `onSubmit`
 - 🔀 **Renderização Condicional** - Exibição de erros e validações
 
 ### 🎨 **Interface de Usuário (UI/UX)**
+
 - 🧩 **Material-UI** - Biblioteca de componentes profissionais
 - 📱 **Design Responsivo** - Layout adaptável para diferentes telas
 - ♿ **Acessibilidade** - Práticas inclusivas de desenvolvimento
 - 🎪 **Formulários Complexos** - Diferentes tipos de campos e validações
 
 ### 🔧 **Ferramentas de Desenvolvimento**
+
 - ⚡ **Vite** - Build tool moderno e rápido
 - 📝 **TypeScript** - Tipagem estática para JavaScript
 - 🔍 **ESLint** - Análise de código e boas práticas
 - 🚀 **Hot Reload** - Desenvolvimento com atualizações instantâneas
 
 ### 🔍 **Conceitos Avançados**
+
 - 🛣️ **React Router** - Navegação entre páginas (SPA)
 - ✅ **Validação de Formulários** - Verificação de campos obrigatórios
 - 📊 **Gerenciamento de Estado** - Como dados fluem na aplicação
@@ -73,11 +77,13 @@ Antes de começar, você precisa ter instalado em sua máquina:
 ### 📥 **Instalação**
 
 1. **Clone este repositório:**
+
    ```bash
    git clone https://github.com/lucianoedipo/form_web_ufms.git
    ```
 
 2. **Navegue até o diretório do projeto:**
+
    ```bash
    cd form_web_ufms
    ```
@@ -117,6 +123,7 @@ npm run preview
 ## 📋 Funcionalidades Implementadas
 
 ### 📝 **Formulário de Cadastro Completo**
+
 - ✅ **Validação em tempo real** - Feedback imediato para o usuário
 - ✅ **Campos obrigatórios** - Verificação antes do envio
 - ✅ **Diferentes tipos de input** - Text, date, select, radio, checkbox
@@ -125,41 +132,45 @@ npm run preview
 ### 🗃️ **Seções do Formulário**
 
 #### 1. 👤 **Dados Pessoais**
-- Nome Completo *(obrigatório)*
-- CPF *(obrigatório)*
-- Data de Nascimento *(obrigatório)*
-- Sexo *(seleção via radio buttons)*
-- Estado Civil *(dropdown com opções)*
+
+- Nome Completo _(obrigatório)_
+- CPF _(obrigatório)_
+- Data de Nascimento _(obrigatório)_
+- Sexo _(seleção via radio buttons)_
+- Estado Civil _(dropdown com opções)_
 
 #### 2. 📍 **Dados de Contato**
-- Endereço Completo *(obrigatório)*
-- Bairro *(obrigatório)*
-- Cidade *(obrigatório)*
-- UF - Unidade Federativa *(dropdown com todos os estados)*
-- CEP *(obrigatório)*
-- Celular *(obrigatório)*
-- Telefone *(opcional)*
+
+- Endereço Completo _(obrigatório)_
+- Bairro _(obrigatório)_
+- Cidade _(obrigatório)_
+- UF - Unidade Federativa _(dropdown com todos os estados)_
+- CEP _(obrigatório)_
+- Celular _(obrigatório)_
+- Telefone _(opcional)_
 
 #### 3. 📧 **Dados de Cadastro**
-- E-mail *(obrigatório)*
-- Website *(opcional)*
-- Interesses *(checkboxes múltiplas com 14 opções)*
+
+- E-mail _(obrigatório)_
+- Website _(opcional)_
+- Interesses _(checkboxes múltiplas com 14 opções)_
 
 ### 📊 **Página de Relatório**
+
 - 📋 **Exibição organizada** dos dados submetidos
 - 🎨 **Tabela responsiva** com Material-UI
 - 🔄 **Navegação de volta** para o formulário
 
 ## 🛠️ Tecnologias Utilizadas
 
-| Tecnologia | Versão | Descrição |
-|------------|---------|-----------|
-| **React** | 19.1.0 | Biblioteca JavaScript para interfaces |
-| **TypeScript** | 5.8.3 | Superset do JavaScript com tipagem |
-| **Material-UI** | 7.2.0 | Biblioteca de componentes React |
-| **React Router** | 7.7.0 | Roteamento para aplicações React |
-| **Vite** | 7.0.5 | Build tool extremamente rápido |
-| **ESLint** | 9.31.0 | Ferramenta de análise de código |
+| Tecnologia       | Versão | Descrição                             |
+| ---------------- | ------ | ------------------------------------- |
+| **React**        | 19.1.0 | Biblioteca JavaScript para interfaces |
+| **TypeScript**   | 5.8.3  | Superset do JavaScript com tipagem    |
+| **Material-UI**  | 7.2.0  | Biblioteca de componentes React       |
+| **React Router** | 7.7.0  | Roteamento para aplicações React      |
+| **Vite**         | 7.0.5  | Build tool extremamente rápido        |
+| **ESLint**       | 9.31.0 | Ferramenta de análise de código       |
 
 ## 📚 Recursos de Aprendizado
 
@@ -185,18 +196,21 @@ npm run preview
 ## 🎯 Exercícios Sugeridos para Estudantes
 
 ### 🥉 **Nível Iniciante**
+
 1. **Personalização Visual** - Altere cores e estilos do formulário
 2. **Novos Campos** - Adicione um campo "Profissão" nos dados pessoais
 3. **Validação Simples** - Implemente validação de e-mail
 4. **Mensagens** - Customize as mensagens de erro
 
 ### 🥈 **Nível Intermediário**
+
 1. **Máscara de CPF** - Implemente formatação automática do CPF
 2. **Busca CEP** - Integre com API para buscar endereço pelo CEP
 3. **Validações Avançadas** - Valide CPF, e-mail e telefone
 4. **LocalStorage** - Salve dados no navegador
 
 ### 🥇 **Nível Avançado**
+
 1. **Banco de Dados** - Conecte com uma API real
 2. **Autenticação** - Adicione login e logout
 3. **Temas** - Implemente modo claro/escuro
@@ -228,6 +242,7 @@ Este é um projeto educacional! Contribuições são sempre bem-vindas:
 Este projeto está sob a licença **CC0 1.0 Universal** - veja o arquivo [LICENSE.txt](LICENSE.txt) para mais detalhes.
 
 **Isso significa que você pode:**
+
 - ✅ Usar comercialmente
 - ✅ Modificar livremente
 - ✅ Distribuir
@@ -239,7 +254,7 @@ Este projeto está sob a licença **CC0 1.0 Universal** - veja o arquivo [LICENS
 **Luciano Édipo**  
 📧 **E-mail:** luciano.silva@ufms.br  
 🏛️ **Instituição:** Universidade Federal de Mato Grosso do Sul (UFMS)  
-📚 **Disciplina:** Fundamentos de Desenvolvimento Web  
+📚 **Disciplina:** Fundamentos de Desenvolvimento Web
 
 ## 🙋‍♂️ Dúvidas Frequentes
 
@@ -274,6 +289,6 @@ Você pode criar um tema customizado no arquivo `main.tsx` usando `createTheme` 
 
 ## 🌟 **Dica Final**
 
-> *"A melhor maneira de aprender programação é praticando! Use este projeto como base e experimente criar suas próprias funcionalidades. Não tenha medo de quebrar o código - é assim que se aprende!"*
+> _"A melhor maneira de aprender programação é praticando! Use este projeto como base e experimente criar suas próprias funcionalidades. Não tenha medo de quebrar o código - é assim que se aprende!"_
 
 **Bons estudos! 🚀📚**

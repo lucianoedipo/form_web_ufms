@@ -68,7 +68,7 @@ const Form: React.FC = () => {
 
   const handleSelectChange = (e: SelectChangeEvent<string>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name as string]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
