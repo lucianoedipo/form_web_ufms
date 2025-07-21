@@ -14,7 +14,7 @@ import {
 
 const Report: React.FC = () => {
   const location = useLocation();
-  const formData = location.state as Record<string, any>;
+  const formData = location.state as Record<string, string | string[]>;
 
   return (
     <Container maxWidth="md">

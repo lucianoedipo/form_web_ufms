@@ -82,17 +82,18 @@ const Form: React.FC = () => {
   };
 
   const validate = () => {
-    let tempErrors: { [key: string]: boolean } = {};
-    tempErrors.fullName = formData.fullName === "";
-    tempErrors.cpf = formData.cpf === "";
-    tempErrors.email = formData.email === "";
-    tempErrors.address = formData.address === "";
-    tempErrors.neighborhood = formData.neighborhood === "";
-    tempErrors.city = formData.city === "";
-    tempErrors.state = formData.state === "";
-    tempErrors.zipCode = formData.zipCode === "";
-    tempErrors.phone = formData.phone === "";
-    tempErrors.birthDate = formData.birthDate === "";
+    const tempErrors: { [key: string]: boolean } = {
+      fullName: formData.fullName === "",
+      cpf: formData.cpf === "",
+      email: formData.email === "",
+      address: formData.address === "",
+      neighborhood: formData.neighborhood === "",
+      city: formData.city === "",
+      state: formData.state === "",
+      zipCode: formData.zipCode === "",
+      phone: formData.phone === "",
+      birthDate: formData.birthDate === "",
+    };
 
     setErrors(tempErrors);
     return Object.values(tempErrors).every((x) => !x);
